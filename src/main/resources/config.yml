@@ -1,0 +1,43 @@
+postgresql:
+  connectionString: 'localhost:5433'
+  username: 'postgres'
+  password: '111hhhfffG'
+  database: 'NightfallCraft'
+
+messages:
+  general:
+    noPermission: '&bВаша квалификация не достаточна для использования &a/{Command} &bкоманды!'
+  nv:
+    unCorrectCommand: '&bВы ввели команду не корректно, попробуйте написать &a/nv &bили &a/nv [Player]'
+    userNotFound: '&bПользователя &a{Player} &bнет в сети или не существует'
+    nvIsOn: '&bНочное зрение &aвключено'
+    nvIsOff: '&bНочное зрение &aвыключено'
+    nvIsOnByOtherPlayer: '&bВам &aвключил &bночное зрение &a{Player}'
+    nvIsOffByOtherPlayer: '&bВам &aвыключил &bночное зрение &a{Player}'
+    OnNvForOtherPlayer: '&bНочное зрение &aвключаено &bдля &a{Player}'
+    OffNvForOtherPlayer: '&bНочное зрение &aвыключено &bдля &a{Player}'
+  mainHelper:
+    getHelp: '&bНапишите &a/sh help &bдля получения помощи'
+    help: '&b/sh reload - перезагрузка плагина
+    &b/sh jc (joincheck) - включить/выключить наблюдение за входом игроков
+    &b/sh lc (leavecheck) - включить/выключить наблюдение за выходом игроков'
+    successReload: '&aПерезагрузка плагина успешна!'
+    joinCheckOn: '&bВы &aвключили &bнаблюдение за входящими игроками'
+    joinCheckOff: '&bВы &aвыключили &bнаблюдение за входящими игроками'
+    leaveCheckOn: '&bВы &aвключили &bнаблюдение за выходящими игроками'
+    leaveCheckOff: '&bВы &aвыключили &bнаблюдение за выходящими игроками'
+  playerJoin: '&bИгрок &a{Player} &bподключился с ip: {Address}'
+  playerLeave: '&8Игрок &7{Player} &8вышел'
+  ipWarning:
+    clear:
+      color: '&a'
+      suffix: ' (Чистый)'
+    indent:
+      color: '&e'
+      suffix: ' (Схожий)'
+    twink:
+      color: '&4'
+      suffix: ' (Твинк)'
+    bad:
+      color: '&9'
+      suffix: ' (Некорректный)'

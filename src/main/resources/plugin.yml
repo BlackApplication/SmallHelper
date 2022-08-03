@@ -1,0 +1,18 @@
+name: SmallHelper
+version: '${project.version}'
+main: org.nightfallcraft.com.smallhelper.SmallHelper
+authors: [ TheDarkHerald ]
+description: SmallHelper - plugin with additional commands to your server.
+libraries:
+  - org.postgresql:postgresql:42.3.6
+commands:
+  sh: {}
+  nv: {}
+permissions:
+  smallhelper:
+    nv:
+      others: {}
+    sh: {}
+    jc: {}
+    lc: {}
+    reload: {}
