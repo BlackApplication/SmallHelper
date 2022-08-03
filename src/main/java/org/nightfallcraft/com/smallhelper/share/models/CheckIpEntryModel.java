@@ -11,13 +11,9 @@ public class CheckIpEntryModel {
         this.IsBadAddress = IsBadAddress;
     }
 
-    public boolean isIntersect() {
-        return IsIntersect;
-    }
+    public boolean isIntersect() { return IsIntersect; }
 
-    public boolean isTwink() {
-        return IsTwink;
-    }
+    public boolean isTwink() { return IsTwink; }
 
     public boolean isBadAddress() { return IsBadAddress; }
 }

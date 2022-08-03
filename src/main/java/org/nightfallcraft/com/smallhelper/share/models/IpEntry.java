@@ -3,7 +3,6 @@ package org.nightfallcraft.com.smallhelper.share.models;
 import java.util.Objects;
 
 public class IpEntry {
-
     private int id;
     private final String playerName;
     private final String address;

@@ -11,7 +11,6 @@ import org.nightfallcraft.com.smallhelper.events.LeaveCheck;
 import java.sql.SQLException;
 
 public final class SmallHelper extends JavaPlugin {
-
     private static SmallHelper instance;
     private static JoinCheckWithIP joinListener;
     private static LeaveCheck leaveListener;
@@ -41,17 +40,11 @@ public final class SmallHelper extends JavaPlugin {
         }
     }
 
-    public static SmallHelper getInstance() {
-        return instance;
-    }
+    public static SmallHelper getInstance() { return instance; }
 
-    public static JoinCheckWithIP getJoinListener() {
-        return joinListener;
-    }
+    public static JoinCheckWithIP getJoinListener() { return joinListener; }
 
-    public static LeaveCheck getLeaveListener() {
-        return leaveListener;
-    }
+    public static LeaveCheck getLeaveListener() { return leaveListener; }
 
     public static DataBaseCore getDbCore() { return instance.dbCore; }
 
