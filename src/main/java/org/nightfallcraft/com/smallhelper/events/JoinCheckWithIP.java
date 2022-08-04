@@ -53,11 +53,7 @@ public class JoinCheckWithIP extends AbstractPlayerEvent {
     }
 
     private void AddedUserIpToDB(String userName, String address) {
-        try {
-            SmallHelper.getDbCore().AddIpEntry(userName, address);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        SmallHelper.getDbCore().AddIpEntry(userName, address);
     }
 
     private UserIpWarningType checkIpWarning(String userName, String address) {
