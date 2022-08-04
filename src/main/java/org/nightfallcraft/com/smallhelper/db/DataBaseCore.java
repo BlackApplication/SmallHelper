@@ -17,9 +17,13 @@ public class DataBaseCore {
         postgresqlDb = new PostgresqlDatabase();
     }
 
-    public void AddIpEntry(String playerName, String address) throws SQLException {
+    public void AddIpEntry(String playerName, String address) {
         IpEntry ipEntry = IpEntry.create(playerName, address);
-        postgresqlDb.AddIpEntry(ipEntry);
+        try {
+            postgresqlDb.AddIpEntry(ipEntry);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public CheckIpEntryModel checkIpEntry(String playerName, String address) {
@@ -49,8 +53,12 @@ public class DataBaseCore {
 //        Bukkit.getScheduler().scheduleSyncDelayedTask(SmallHelper.getInstance(), runnable);
 //    }
 
-    public void close() throws SQLException {
-        postgresqlDb.close();
+    public void close() {
+        try {
+            postgresqlDb.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private CheckIpEntryModel compareIpWithSame(String address, ArrayList<IpCheckDbResult> sameIps) {

@@ -31,13 +31,7 @@ public final class SmallHelper extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        if (dbCore != null) {
-            try {
-                dbCore.close();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        }
+        if (dbCore != null) dbCore.close();
     }
 
     public static SmallHelper getInstance() { return instance; }

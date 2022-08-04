@@ -18,9 +18,7 @@ public class IpEntry {
         return new IpEntry(playerName, address, System.currentTimeMillis());
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public void setId(int id) { this.id = id; }
 
     public int getId() {
         return id;

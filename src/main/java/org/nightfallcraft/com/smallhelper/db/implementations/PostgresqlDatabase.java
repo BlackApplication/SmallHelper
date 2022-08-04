@@ -19,22 +19,18 @@ public class PostgresqlDatabase implements IDatabase {
 
     @Override
     public void AddIpEntry(IpEntry ipEntry) throws SQLException {
-        save(connection, ipEntry);
-    }
-
-    private void save(Connection c, IpEntry ipEntry) throws SQLException {
         String query = "INSERT INTO " + table + " (UserName, Address, CreateTime) VALUES (?, ?, ?);";
-        try (PreparedStatement s = c.prepareStatement(query)) {
+        try (PreparedStatement s = connection.prepareStatement(query)) {
             s.setString(1, ipEntry.getPlayerName());
             s.setString(2, ipEntry.getAddress());
             s.setLong(3, ipEntry.getUpdateTime());
 
             s.executeUpdate();
-            ResultSet set = s.getGeneratedKeys();
-            if (set.next()) {
-                int id = set.getInt(1);
-                ipEntry.setId(id);
-            }
+//            ResultSet set = s.getGeneratedKeys();
+//            if (set.next()) {
+//                int id = set.getInt(1);
+//                ipEntry.setId(id);
+//            }
         }
     }
 
