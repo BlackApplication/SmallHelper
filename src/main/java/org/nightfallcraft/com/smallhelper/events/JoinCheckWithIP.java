@@ -7,9 +7,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.nightfallcraft.com.smallhelper.SmallHelper;
 import org.nightfallcraft.com.smallhelper.share.TextConfig;
 import org.nightfallcraft.com.smallhelper.share.enums.UserIpWarningType;
-import org.nightfallcraft.com.smallhelper.share.models.CheckIpEntryModel;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -19,15 +17,7 @@ public class JoinCheckWithIP extends AbstractPlayerEvent {
         Player player = event.getPlayer();
         String address = player.getAddress().getHostString();
 
-        UserIpWarningType ipWarning = checkIpWarning(player.getName(), address);
-
-        String ipWarningColor = getColorWarning(ipWarning);
-        String ipWarningText = getTextWarning(ipWarning);
-        for (Player wp : watchingPlayers) {
-            wp.sendMessage(TextConfig.getText("messages.playerJoin")
-                    .replace("{Player}", player.getName())
-                    .replace("{Address}", ipWarningColor + address + ipWarningText));
-        }
+        checkIpWarningAndSendToWatchers(player.getName(), address);
 
         AddedUserIpToDB(player.getName(), address);
         ReconnectUserToListeners(player);
@@ -56,19 +46,25 @@ public class JoinCheckWithIP extends AbstractPlayerEvent {
         SmallHelper.getDbCore().AddIpEntry(userName, address);
     }
 
-    private UserIpWarningType checkIpWarning(String userName, String address) {
-        CheckIpEntryModel checkIpPlayer = SmallHelper.getDbCore().checkIpEntry(userName, address);
+    private void checkIpWarningAndSendToWatchers(String userName, String address) {
+        SmallHelper.getDbCore().checkIpEntry(userName, address, (checkIpPlayer) -> {
+            UserIpWarningType userWarning = UserIpWarningType.Clear;
+            if (checkIpPlayer.isBadAddress()) {
+                userWarning = UserIpWarningType.Bad;
+            } else if (checkIpPlayer.isTwink()) {
+                userWarning = UserIpWarningType.Twink;
+            } else if (checkIpPlayer.isIntersect()) {
+                userWarning = UserIpWarningType.Warning;
+            }
 
-        UserIpWarningType userWarning = UserIpWarningType.Clear;
-        if (checkIpPlayer.isBadAddress()) {
-            userWarning = UserIpWarningType.Bad;
-        } else if (checkIpPlayer.isTwink()) {
-            userWarning = UserIpWarningType.Twink;
-        } else if (checkIpPlayer.isIntersect()) {
-            userWarning = UserIpWarningType.Warning;
-        }
-
-        return userWarning;
+            String ipWarningColor = getColorWarning(userWarning);
+            String ipWarningText = getTextWarning(userWarning);
+            for (Player wp : watchingPlayers) {
+                wp.sendMessage(TextConfig.getText("messages.playerJoin")
+                        .replace("{Player}", userName)
+                        .replace("{Address}", ipWarningColor + address + ipWarningText));
+            }
+        });
     }
 
     private String getColorWarning(UserIpWarningType ipWarning) {
