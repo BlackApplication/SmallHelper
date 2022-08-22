@@ -1,12 +1,12 @@
-postgresql:
-  connectionString: 'localhost:5433'
-  username: 'postgres'
-  password: '111hhhfffG'
-  database: 'NightfallCraft'
+mySql:
+  connectionString: 'ip:port'
+  username: 'test'
+  password: 'root'
+  database: 'test'
 
 messages:
   general:
-    noPermission: '&bВаша квалификация не достаточна для использования &a/{Command} &bкоманды!'
+    noPermission: '&cВаша квалификация не достаточна для использования &4/{Command} &cкоманды!'
   nv:
     unCorrectCommand: '&bВы ввели команду не корректно, попробуйте написать &a/nv &bили &a/nv [Player]'
     userNotFound: '&bПользователя &a{Player} &bнет в сети или не существует'

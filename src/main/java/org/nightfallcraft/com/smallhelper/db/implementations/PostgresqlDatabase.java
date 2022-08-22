@@ -59,12 +59,12 @@ public class PostgresqlDatabase implements IDatabase {
     }
 
     private Connection dbConnect() throws SQLException {
-        String connectionString = TextConfig.getText("postgresql.connectionString");
-        String database = TextConfig.getText("postgresql.database");
-        String username = TextConfig.getText("postgresql.username");
-        String password = TextConfig.getText("postgresql.password");
+        String connectionString = TextConfig.getText("mysql.connectionString");
+        String database = TextConfig.getText("mysql.database");
+        String username = TextConfig.getText("mysql.username");
+        String password = TextConfig.getText("mysql.password");
         Connection connection = DriverManager.getConnection(
-                "jdbc:postgresql://" + connectionString + "/" + database,
+                "jdbc:mysql://" + connectionString + "/" + database,
                 username,
                 password
         );
@@ -83,10 +83,10 @@ public class PostgresqlDatabase implements IDatabase {
     private void checkDbTable() {
         try (Statement s = connection.createStatement()) {
             s.executeUpdate("CREATE TABLE IF NOT EXISTS " + table + " ("
-                    + "Id SERIAL PRIMARY KEY,"
-                    + "UserName VARCHAR(60),"
-                    + "Address VARCHAR(30),"
-                    + "CreateTime BIGINT"
+                    + "`Id` INT AUTO_INCREMENT PRIMARY KEY,"
+                    + "`UserName` VARCHAR(60),"
+                    + "`Address` VARCHAR(30),"
+                    + "`CreateTime` BIGINT"
                     + ");"
             );
         } catch (SQLException e) {
