@@ -35,7 +35,7 @@ public class DataBaseCore {
     public void checkIpEntry(String playerName, String address, Consumer<CheckIpEntryModel> callback) {
         String[] addressParts = address.split("\\.");
         if (addressParts.length != 4) {
-            sync(() -> callback.accept(new CheckIpEntryModel(false, false, true)));
+            callback.accept(new CheckIpEntryModel(false, false, true));
             return;
         }
 
